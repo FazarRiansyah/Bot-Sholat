@@ -6,8 +6,8 @@ Modified @ Farzain - zFz
 */
 require_once('./line_class.php');
 require_once('./unirest-php-master/src/Unirest.php');
-$channelAccessToken = 'YOUR-CHANNEL-ACCESS-TOKEN'; //sesuaikan 
-$channelSecret = 'YOUR-CHANNEL-SECRET-CODE';//sesuaikan
+$channelAccessToken = 'pXaYg3+bY2fU1yYFMZ1zSymgm74qpiqeMMsefjyZPQ3AhpPrCd8yc1FWXsX5dp95tpDmU9ludYBWThoiPiDsOmnTATSLDgadFx5jE6EgvMoYfWyAsD4Q+eWOUsJeKPQVJ+pq1+PAfD2CIvqATQ9cbwdB04t89/1O/w1cDnyilFU='; //sesuaikan 
+$channelSecret = '6a0d4e83e1d0198373f3de1d03866d06';//sesuaikan
 $client = new LINEBotTiny($channelAccessToken, $channelSecret);
 $userId     = $client->parseEvents()[0]['source']['userId'];
 $groupId    = $client->parseEvents()[0]['source']['groupId'];
@@ -27,11 +27,11 @@ if (count($pesan_datang) > 2) {
     }
 }
 #-------------------------[Function]-------------------------#
-function shalat($keyword) {
+function sholat($keyword) {
     $uri = "https://time.siswadi.com/pray/" . $keyword;
     $response = Unirest\Request::get("$uri");
     $json = json_decode($response->raw_body, true);
-    $result = "Jadwal Shalat Sekitar ";
+    $result = "Jadwal Sholat Sekitar ";
     $result .= $json['location']['address'];
     $result .= "\nTanggal : ";
     $result .= $json['time']['date'];
@@ -55,7 +55,7 @@ function shalat($keyword) {
 # require_once('./src/function/hard.php');
 //show menu, saat join dan command /menu
 if ($type == 'join' || $command == '/menu') {
-    $text = "Assalamualaikum Kakak, aku adalah bot jadwal shalat, silahkan ketik\n\n/shalat <nama tempat>\n\nnanti aku bakalan kasih tahu jam berapa waktunya shalat ^_^";
+    $text = "Assalamualaikum Kakak, aku adalah bot jadwal sholat, silahkan ketik\n\n/sholat <nama tempat>\n\nnanti aku bakalan kasih tahu jam berapa waktunya sholat ^_^";
     $balas = array(
         'replyToken' => $replyToken,
         'messages' => array(
@@ -68,8 +68,8 @@ if ($type == 'join' || $command == '/menu') {
 }
 //pesan bergambar
 if($message['type']=='text') {
-        if ($command == '/shalat') {
-        $result = shalat($options);
+        if ($command == '/sholat') {
+        $result = sholat($options);
         $balas = array(
             'replyToken' => $replyToken,
             'messages' => array(
